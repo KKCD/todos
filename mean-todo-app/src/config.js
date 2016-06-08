@@ -4,7 +4,7 @@ import uiRouter from 'angular-ui-router';
 const app = angular.module('app',[uiRouter]);
 
 app.config(($stateProvider,$urlRouterProvider,$locationProvider) =>{
-	$urlRouterProvider.other('/');
+	$urlRouterProvider.otherwise('/');
 
 	$stateProvider
 		.state('todos',{
@@ -15,7 +15,7 @@ app.config(($stateProvider,$urlRouterProvider,$locationProvider) =>{
 			url:'/about',
 			template:require('about/about.html')
 		})
-	$locationProvider.html5Model(true);
+	$locationProvider.html5Mode(true);
 });
 
 export default app;
