@@ -1,6 +1,8 @@
 /*create a server.js file that defines a web app using the Express.js framework*/
 var express = require('express');
 var app=express();
+//var routes = require('server/routes');
+//routes(app);
 var PORT = process.env.PORT || 3000;
 
 app.get('/*',function(req, res){

@@ -1,8 +1,9 @@
 import _ from 'lodash';
-export default function($scope){
+export default function($scope,todoFactory){
 	let params={
 		createHasInput:false
-	};
+	};//objects passed by reference and variable is passed by copy. so I made to object and use in factories.
+	//console.log(todoFactory.createTask);
 	$scope.todos =[
 	{
 		task:'Wash Dishes',
@@ -19,11 +20,7 @@ export default function($scope){
 		todo.isCompleted = !todo.isCompleted;
 	};
 
-	$scope.createTask=()=>{
-		params.createHasInput=false;
-		$scope.createTaskInput='';
-
-	};
+	$scope.createTask=todoFactory.createTask.bind(this,params,$scope);
 
 	$scope.onEditClick=todo=>{
 			todo.isEditable=true;
@@ -35,10 +32,7 @@ export default function($scope){
 		todo.isEditable=false;
 	};
 
-	$scope.updateTask=todo=>{
-		todo.task=todo.updatedTask;
-		todo.isEditable=false;	
-	};
+	$scope.updateTask=todoFactory.updateTask.bind(this);
 
 	$scope.removeTask=todoToRemove=>{
 		_.remove($scope.todos ,todo => todo.task === todoToRemove.task);
